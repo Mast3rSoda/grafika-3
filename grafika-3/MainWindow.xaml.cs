@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,6 +24,34 @@ namespace grafika_3
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private int rValue = 0, gValue = 0, bValue = 0;
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Slider slider = (Slider)sender;
+
+            Regex rgbRegex = new Regex(@"^rgb.+");
+            Regex cmykRegex = new Regex(@"^cmyk.+");
+            Regex hsvRegex = new Regex(@"^hsv.+");
+
+            if (!slider.IsMouseOver) return;
+
+            if (rgbRegex.IsMatch(slider.Name))
+            {
+
+            }
+            if (cmykRegex.IsMatch(slider.Name))
+            {
+
+            }
+            if (hsvRegex.IsMatch(slider.Name))
+            {
+
+            }
+
+
         }
     }
 }
