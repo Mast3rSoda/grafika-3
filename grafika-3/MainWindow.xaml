@@ -11,7 +11,7 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Background="Green" Margin="5"/>
+            <Label Grid.Row="0" Name="colorPreview" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Background="Green" Margin="5"/>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
@@ -29,7 +29,7 @@
                 <TextBlock Grid.Row="0" Margin="5" Text="RGB" HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Top"/>
                 <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Vertical">
                     <TextBlock HorizontalAlignment="Center" Text="R"/>
-                    <Slider Minimum="0" Name="rgbRSlider"  ValueChanged="Slider_ValueChanged" Maximum="255" IsSnapToTickEnabled="True" Margin="0, 5"/>
+                    <Slider Minimum="0" Name="rgbRSlider"  ValueChanged="rgbSlider_ValueChanged" Maximum="255" IsSnapToTickEnabled="True" Margin="0, 5"/>
                     <TextBox HorizontalAlignment="Center" Text="{Binding ElementName=rgbRSlider, 
                         Path=Value, 
                          UpdateSourceTrigger=PropertyChanged, 
@@ -37,7 +37,7 @@
                 </StackPanel>
                 <StackPanel Grid.Row="2" VerticalAlignment="Center" Orientation="Vertical">
                     <TextBlock HorizontalAlignment="Center" Text="G"/>
-                    <Slider Minimum="0" Name="rgbGSlider" ValueChanged="Slider_ValueChanged" Maximum="255" IsSnapToTickEnabled="True" Margin="0, 5"/>
+                    <Slider Minimum="0" Name="rgbGSlider" ValueChanged="rgbSlider_ValueChanged" Maximum="255" IsSnapToTickEnabled="True" Margin="0, 5"/>
                     <TextBox HorizontalAlignment="Center" Text="{Binding ElementName=rgbGSlider, 
                         Path=Value, 
                          UpdateSourceTrigger=PropertyChanged, 
@@ -45,7 +45,7 @@
                 </StackPanel>
                 <StackPanel Grid.Row="3" VerticalAlignment="Center" Orientation="Vertical">
                     <TextBlock HorizontalAlignment="Center" Text="B"/>
-                    <Slider Minimum="0" Name="rgbBSlider" ValueChanged="Slider_ValueChanged" Maximum="255" IsSnapToTickEnabled="True" Margin="0, 5"/>
+                    <Slider Minimum="0" Name="rgbBSlider" ValueChanged="rgbSlider_ValueChanged" Maximum="255" IsSnapToTickEnabled="True" Margin="0, 5"/>
                     <TextBox HorizontalAlignment="Center" Text="{Binding ElementName=rgbBSlider, 
                         Path=Value, 
                          UpdateSourceTrigger=PropertyChanged, 
@@ -63,7 +63,7 @@
                 <TextBlock Text="CMYK" Margin="5" HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Top"/>
                 <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Vertical">
                     <TextBlock HorizontalAlignment="Center" Text="C"/>
-                    <Slider Minimum="0" Name="cmykCSlider" ValueChanged="Slider_ValueChanged" Maximum="100" IsSnapToTickEnabled="True" Margin="0, 5"/>
+                    <Slider Minimum="0" Name="cmykCSlider" ValueChanged="cmykMSlider_ValueChanged" Maximum="100" IsSnapToTickEnabled="True" Margin="0, 5"/>
                     <TextBox HorizontalAlignment="Center" Text="{Binding ElementName=cmykCSlider, 
                         Path=Value, 
                          UpdateSourceTrigger=PropertyChanged, 
@@ -71,7 +71,7 @@
                 </StackPanel>
                 <StackPanel Grid.Row="2" VerticalAlignment="Center" Orientation="Vertical">
                     <TextBlock HorizontalAlignment="Center" Text="M"/>
-                    <Slider Minimum="0" Name="cmykMSlider" ValueChanged="Slider_ValueChanged" Maximum="100" IsSnapToTickEnabled="True" Margin="0, 5"/>
+                    <Slider Minimum="0" Name="cmykMSlider" ValueChanged="cmykMSlider_ValueChanged" Maximum="100" IsSnapToTickEnabled="True" Margin="0, 5"/>
                     <TextBox HorizontalAlignment="Center" Text="{Binding ElementName=cmykMSlider, 
                         Path=Value, 
                          UpdateSourceTrigger=PropertyChanged, 
@@ -79,7 +79,7 @@
                 </StackPanel>
                 <StackPanel Grid.Row="3" VerticalAlignment="Center" Orientation="Vertical">
                     <TextBlock HorizontalAlignment="Center" Text="Y"/>
-                    <Slider Minimum="0" Name="cmykYSlider" ValueChanged="Slider_ValueChanged" Maximum="100" IsSnapToTickEnabled="True" Margin="0, 5"/>
+                    <Slider Minimum="0" Name="cmykYSlider" ValueChanged="cmykMSlider_ValueChanged" Maximum="100" IsSnapToTickEnabled="True" Margin="0, 5"/>
                     <TextBox HorizontalAlignment="Center" Text="{Binding ElementName=cmykYSlider, 
                         Path=Value, 
                          UpdateSourceTrigger=PropertyChanged, 
@@ -87,7 +87,7 @@
                 </StackPanel>
                 <StackPanel Grid.Row="4" VerticalAlignment="Center" Orientation="Vertical">
                     <TextBlock HorizontalAlignment="Center" Text="K"/>
-                    <Slider Minimum="0" Name="cmykKSlider" ValueChanged="Slider_ValueChanged" Maximum="100" IsSnapToTickEnabled="True" Margin="0, 5"/>
+                    <Slider Minimum="0" Name="cmykKSlider" ValueChanged="cmykMSlider_ValueChanged" Maximum="100" IsSnapToTickEnabled="True" Margin="0, 5"/>
                     <TextBox HorizontalAlignment="Center" Text="{Binding ElementName=cmykKSlider, 
                         Path=Value, 
                          UpdateSourceTrigger=PropertyChanged, 
@@ -104,7 +104,7 @@
                 <TextBlock Text="HSV" Margin="5" HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Top"/>
                 <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Vertical">
                     <TextBlock HorizontalAlignment="Center" Text="H"/>
-                    <Slider Minimum="0" Maximum="359" Name="hsvHSlider" ValueChanged="Slider_ValueChanged" IsSnapToTickEnabled="True" Margin="0, 5"/>
+                    <Slider Minimum="0" Maximum="359" Name="hsvHSlider" ValueChanged="hsvHSlider_ValueChanged" IsSnapToTickEnabled="True" Margin="0, 5"/>
                     <TextBox HorizontalAlignment="Center" Text="{Binding ElementName=hsvHSlider, 
                         Path=Value, 
                          UpdateSourceTrigger=PropertyChanged, 
@@ -112,7 +112,7 @@
                 </StackPanel>
                 <StackPanel Grid.Row="2" VerticalAlignment="Center" Orientation="Vertical">
                     <TextBlock HorizontalAlignment="Center" Text="S"/>
-                    <Slider Minimum="0" Maximum="100" Name="hsvSSlider" ValueChanged="Slider_ValueChanged" IsSnapToTickEnabled="True" Margin="0, 5"/>
+                    <Slider Minimum="0" Maximum="100" Name="hsvSSlider" ValueChanged="hsvHSlider_ValueChanged" IsSnapToTickEnabled="True" Margin="0, 5"/>
                     <TextBox HorizontalAlignment="Center" Text="{Binding ElementName=hsvSSlider, 
                         Path=Value, 
                          UpdateSourceTrigger=PropertyChanged, 
@@ -120,14 +120,19 @@
                 </StackPanel>
                 <StackPanel Grid.Row="3" VerticalAlignment="Center" Orientation="Vertical">
                     <TextBlock HorizontalAlignment="Center" Text="V"/>
-                    <Slider Minimum="0" Maximum="100" Name="hsvVSlider" ValueChanged="Slider_ValueChanged" IsSnapToTickEnabled="True" Margin="0, 5"/>
+                    <Slider Minimum="0" Maximum="100" Name="hsvVSlider" ValueChanged="hsvHSlider_ValueChanged" IsSnapToTickEnabled="True" Margin="0, 5"/>
                     <TextBox HorizontalAlignment="Center" Text="{Binding ElementName=hsvVSlider, 
                         Path=Value, 
                          UpdateSourceTrigger=PropertyChanged, 
                          Mode=TwoWay}" Width="30"/>
                 </StackPanel>
             </Grid>
-            <TextBlock Grid.Column="3" Name="xd" Margin="5" Text="tu wpierdolic kostke" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </Grid>
+            <StackPanel Grid.Column="3">
+                <TextBlock Name="xd" Margin="5" Text="tu wpierdolic kostke"/>
+                <TextBlock Name="xd1" Margin="5" Text="tu wpierdolic kostke"/>
+                <TextBlock Name="xd2" Margin="5" Text="tu wpierdolic kostke"/>
+                <TextBlock Name="xd3" Margin="5" Text="tu wpierdolic kostke"/>
+            </StackPanel>
+            </Grid>
     </Grid>
 </Window>
